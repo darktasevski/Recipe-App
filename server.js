@@ -3,7 +3,7 @@ require('dotenv').config({
 });
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 // GraphQL express middleware
 const { ApolloServer } = require('apollo-server-express');
 
@@ -29,7 +29,11 @@ const server = new ApolloServer({
 		User,
 	}),
 });
-
+// const corsOpts = {
+// 	origin: 'http://localhost:3000/',
+// 	credentials: true,
+// };
+// app.use(cors(corsOpts));
 server.applyMiddleware({ app });
 
 mongoose.Promise = global.Promise;
@@ -43,8 +47,6 @@ mongoose
 	)
 	.then(() => console.info(`Connected to MongoDB`))
 	.catch(err => console.error(err));
-
-app.use(bodyParser);
 
 app.listen(PORT, () =>
 	console.info(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
