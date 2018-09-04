@@ -1,7 +1,9 @@
 const { gql } = require('apollo-server-express');
+
 // GraphQL Schema
 exports.typeDefs = gql`
 	type Recipe {
+		id: ID!
 		name: String!
 		category: String!
 		description: String!
@@ -12,10 +14,25 @@ exports.typeDefs = gql`
 	}
 
 	type User {
+		id: ID!
 		username: String!
 		password: String!
 		email: String!
 		joinDate: String
 		favorites: [Recipe]
+	}
+
+	type Query {
+		getAllRecipes: [Recipe]
+	}
+
+	type Mutation {
+		addRecipe(
+			name: String!
+			description: String!
+			category: String!
+			instructions: String!
+			username: String
+		): Recipe
 	}
 `;

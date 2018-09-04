@@ -5,8 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 // GraphQL express middleware
-const { ApolloServer, gql } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
+const { ApolloServer } = require('apollo-server-express');
 
 const Recipe = require('./models/Recipe');
 const User = require('./models/User');
@@ -16,8 +15,20 @@ const { resolvers } = require('./resolvers.js');
 
 const PORT = process.env.PORT || 5050;
 
-const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
+const server = new ApolloServer({
+	typeDefs,
+	resolvers,
+	playground: {
+		settings: {
+			// 'editor.theme': 'light',
+		},
+	},
+	context: ({ req }) => ({
+		Recipe,
+		User,
+	}),
+});
 
 server.applyMiddleware({ app });
 
