@@ -26,6 +26,10 @@ exports.typeDefs = gql`
 		getAllRecipes: [Recipe]
 	}
 
+	type Token {
+		token: String!
+	}
+
 	type Mutation {
 		addRecipe(
 			name: String!
@@ -34,5 +38,7 @@ exports.typeDefs = gql`
 			instructions: String!
 			username: String
 		): Recipe
+
+		registerUser(username: String!, email: String!, password: String!): Token
 	}
 `;
