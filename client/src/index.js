@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider, Query } from 'react-apollo';
 import './index.css';
-import App from './components/App';
+import AppRouter from './routes';
 import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
@@ -12,7 +12,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<App />
+		<AppRouter />
 	</ApolloProvider>,
 	document.getElementById('root')
 );
