@@ -34,6 +34,15 @@ const server = new ApolloServer({
 // 	credentials: true,
 // };
 // app.use(cors(corsOpts));
+
+// Set up JWT auth middleware
+app.use(async (req, res, next) => {
+	const token = req.headers['authorization'];
+
+	console.log(token);
+	next();
+});
+
 server.applyMiddleware({ app });
 
 mongoose.Promise = global.Promise;

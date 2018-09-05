@@ -57,6 +57,10 @@ nav a:link {
 	cursor: pointer;
 }
 
+.button-primary:disabled {
+	background: #50c9c3;
+}
+
 /* App */
 
 .main-title {

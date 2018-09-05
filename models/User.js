@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
 		unique: true,
 	},
 	password: { ...commonConfig },
-	email: { ...commonConfig },
+	email: { ...commonConfig, unique: true },
 	joinDate: {
 		type: Date,
 		default: Date.now,
