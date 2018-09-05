@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 // Recipes queries
 export const getAllRecipes = gql`
@@ -19,6 +19,16 @@ export const getAllRecipes = gql`
 // Recipes mutations
 
 // User queries
+export const GET_CURRENT_USER = gql`
+	query {
+		getCurrentUser {
+			joinDate
+			username
+			email
+			id
+		}
+	}
+`;
 
 // User mutations
 

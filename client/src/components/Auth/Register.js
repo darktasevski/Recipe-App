@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 
 import { REGISTER_USER } from '../../queries/index';
 import Error from '../Error';
@@ -12,7 +12,7 @@ const initialState = {
 	password2: '',
 };
 
-export default class Register extends Component {
+class Register extends Component {
 	static propTypes = {};
 
 	state = { ...initialState };
@@ -29,7 +29,9 @@ export default class Register extends Component {
 		try {
 			const { data } = await cb();
 			localStorage.setItem('token', data.registerUser.token);
-			return this.clearState();
+			await this.props.refetch();
+			this.clearState();
+			this.props.history.push('/auth/login');
 		} catch (err) {
 			console.log(err);
 		}
@@ -98,3 +100,5 @@ export default class Register extends Component {
 		);
 	}
 }
+
+export default withRouter(Register);

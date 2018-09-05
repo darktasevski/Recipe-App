@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
-
+import { withRouter } from 'react-router-dom';
 import { LOGIN_USER } from '../../queries/index';
 import Error from '../Error';
 
@@ -10,7 +9,7 @@ const initialState = {
 	password: '',
 };
 
-export default class Login extends Component {
+class Login extends Component {
 	static propTypes = {};
 
 	state = { ...initialState };
@@ -27,7 +26,9 @@ export default class Login extends Component {
 		try {
 			const { data } = await cb();
 			localStorage.setItem('token', data.loginUser.token);
-			return this.clearState();
+			await this.props.refetch();
+			this.clearState();
+			this.props.history.push('/');
 		} catch (err) {
 			console.log(err);
 		}
@@ -84,3 +85,5 @@ export default class Login extends Component {
 		);
 	}
 }
+
+export default withRouter(Login);
