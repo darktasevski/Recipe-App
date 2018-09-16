@@ -43,6 +43,7 @@ nav a:link {
 
 .active {
 	font-weight: bold;
+	color: hsl(55, 90%, 30%);
 }
 
 .form {

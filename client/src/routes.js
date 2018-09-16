@@ -6,17 +6,21 @@ import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Nav from './components/Nav';
 import Search from './components/Recipe/Search';
+import AddRecipe from './components/Recipe/AddRecipe';
+import Profile from './components/Profile/Profile';
 
-const AppRouter = ({ refetch }) => {
+const AppRouter = ({ refetch, data: { getCurrentUser } }) => {
 	return (
 		<BrowserRouter>
 			<Fragment>
-				<Nav />
+				<Nav session={getCurrentUser} />
 				<Switch>
 					<Route exact path="/" component={App} />
 					<Route exact path="/search" component={Search} />
 					<Route path="/auth/register" render={() => <Register refetch={refetch} />} />
 					<Route path="/auth/login" render={() => <Login refetch={refetch} />} />
+					<Route exact path="/recipe/add" component={AddRecipe} />
+					<Route exact path="/profile" component={Profile} />
 					<Redirect to="/" />
 				</Switch>
 			</Fragment>

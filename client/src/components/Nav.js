@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = () => {
-	return (
-		<nav>
-			<NavUnAuth />
-		</nav>
-	);
+import Logout from './Auth/Logout';
+
+const Nav = ({ session }) => {
+	return <nav>{session ? <NavAuth session={session} /> : <NavUnAuth />}</nav>;
 };
 
 const NavUnAuth = () => (
@@ -27,6 +25,28 @@ const NavUnAuth = () => (
 		</li>
 	</ul>
 );
-const NavAuth = () => ({});
+const NavAuth = ({ session }) => (
+	<Fragment>
+		<ul>
+			<li>
+				<NavLink exact to="/">
+					Home
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="/search">Search</NavLink>
+			</li>
+			<li>
+				<NavLink to="/recipe/add">Add Recipe</NavLink>
+			</li>
+			<li>
+				<NavLink to="/profile">Profile</NavLink>
+			</li>
+			<li>
+				<Logout />
+			</li>
+		</ul>
+	</Fragment>
+);
 
 export default Nav;
