@@ -1,13 +1,15 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import './App.css';
 
-import { getAllRecipes } from '../queries/index';
+import { GET_ALL_RECIPES } from '../queries/index';
+
+import './App.css';
+import RecipeItem from './Recipe/RecipeItem';
 
 const App = () => (
 	<div className="App">
 		<h1>Home</h1>
-		<Query query={getAllRecipes}>
+		<Query query={GET_ALL_RECIPES}>
 			{({ data, loading, error }) => {
 				if (loading) {
 					return <p>Loading...</p>;
@@ -15,7 +17,14 @@ const App = () => (
 				if (error) {
 					return <p>{error}</p>;
 				}
-				return <p>Recipes</p>;
+				console.log(data);
+				return (
+					<ul>
+						{data.getAllRecipes.map(recipe => (
+							<RecipeItem key={recipe.id} {...recipe} />
+						))}
+					</ul>
+				);
 			}}
 		</Query>
 	</div>

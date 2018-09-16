@@ -1,13 +1,23 @@
 import gql from 'graphql-tag';
 
 // Recipes queries
-export const getAllRecipes = gql`
+export const GET_ALL_RECIPES = gql`
 	query {
 		getAllRecipes {
+			id
 			name
+			category
+		}
+	}
+`;
+
+export const GET_RECIPE = gql`
+	query($id: ID!) {
+		getRecipe(id: $id) {
+			name
+			category
 			description
 			instructions
-			category
 			likes
 			createdDate
 			id
