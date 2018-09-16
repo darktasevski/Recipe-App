@@ -14,7 +14,7 @@
 		"heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
 	},
 	"author": "Darko Tasevski <darktasevski@gmail.com>",
-	"license": "ISC",
+	"license": "MIT",
 	"dependencies": {
 		"apollo-server-express": "^2.0.0",
 		"bcrypt": "^3.0.0",
