@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import Logout from './Auth/Logout';
 
-const Nav = ({ session }) => {
-	return <nav>{session ? <NavAuth session={session} /> : <NavUnAuth />}</nav>;
+const Nav = ({ currentUser }) => {
+	return <nav>{currentUser ? <NavAuth currentUser={currentUser} /> : <NavUnAuth />}</nav>;
 };
 
 const NavUnAuth = () => (
@@ -25,7 +25,7 @@ const NavUnAuth = () => (
 		</li>
 	</ul>
 );
-const NavAuth = ({ session }) => (
+const NavAuth = ({ currentUser }) => (
 	<Fragment>
 		<ul>
 			<li>

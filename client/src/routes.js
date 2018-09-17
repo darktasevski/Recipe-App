@@ -14,13 +14,17 @@ const AppRouter = ({ refetch, data: { getCurrentUser } }) => {
 	return (
 		<BrowserRouter>
 			<Fragment>
-				<Nav session={getCurrentUser} />
+				<Nav currentUser={getCurrentUser} />
 				<Switch>
 					<Route exact path="/" component={App} />
 					<Route exact path="/search" component={Search} />
 					<Route path="/auth/register" render={() => <Register refetch={refetch} />} />
 					<Route path="/auth/login" render={() => <Login refetch={refetch} />} />
-					<Route exact path="/recipe/add" component={AddRecipe} />
+					<Route
+						exact
+						path="/recipe/add"
+						render={() => <AddRecipe currentUser={getCurrentUser} />}
+					/>
 					<Route exact path="/recipe/:id" component={RecipePage} />
 					<Route exact path="/profile" component={Profile} />
 					<Redirect to="/" />
