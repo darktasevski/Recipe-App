@@ -40,7 +40,7 @@ class Search extends Component {
 							<ul>
 								{searchResults.map(recipe => {
 									console.log(recipe);
-									return <RecipeItem {...recipe} key={recipe.id} />;
+									return <RecipeItem showLikes {...recipe} key={recipe.id} />;
 								})}
 							</ul>
 						</div>

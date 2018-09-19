@@ -37,6 +37,17 @@ export const SEARCH_RECIPES = gql`
 	}
 `;
 
+export const GET_USER_RECIPES = gql`
+	query($username: String!) {
+		getUserRecipes(username: $username) {
+			id
+			name
+			likes
+			category
+		}
+	}
+`;
+
 // Recipes mutations
 
 export const ADD_RECIPE = gql`
@@ -74,6 +85,10 @@ export const GET_CURRENT_USER = gql`
 			username
 			email
 			id
+			favorites {
+				id
+				name
+			}
 		}
 	}
 `;

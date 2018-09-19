@@ -10,7 +10,7 @@ import AddRecipe from './components/Recipe/AddRecipe';
 import RecipePage from './components/Recipe/RecipePage';
 import Profile from './components/Profile/Profile';
 
-const AppRouter = ({ refetch, data: { getCurrentUser } }) => {
+const AppRouter = ({ refetch, data: { getCurrentUser = {} } }) => {
 	return (
 		<BrowserRouter>
 			<Fragment>
@@ -26,7 +26,11 @@ const AppRouter = ({ refetch, data: { getCurrentUser } }) => {
 						render={() => <AddRecipe currentUser={getCurrentUser} />}
 					/>
 					<Route exact path="/recipe/:id" component={RecipePage} />
-					<Route exact path="/profile" component={Profile} />
+					<Route
+						exact
+						path="/profile"
+						render={() => <Profile currentUser={getCurrentUser} />}
+					/>
 					<Redirect to="/" />
 				</Switch>
 			</Fragment>
