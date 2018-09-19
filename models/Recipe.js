@@ -22,5 +22,9 @@ const RecipeSchema = new mongoose.Schema({
 		type: String,
 	},
 });
+// set up index and search on every field of our recipe
+RecipeSchema.index({
+	'$**': 'text',
+});
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
