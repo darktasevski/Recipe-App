@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 
-import { ADD_RECIPE, GET_ALL_RECIPES } from '../../queries/index';
+import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../../queries/index';
 import withAuth from '../Auth/withAuth';
 
 import Error from '../Error';
@@ -46,7 +46,7 @@ class AddRecipe extends Component {
 
 	validateForm = () => {
 		// Optimistic UI optimization
-		const { name, category, description, instructions } = this.state;
+		const { name, category, description, instructions, username } = this.state;
 		return !name || !category || !description || !instructions;
 	};
 
@@ -61,7 +61,12 @@ class AddRecipe extends Component {
 	render() {
 		const { name, category, description, instructions } = this.state;
 		return (
-			<Mutation mutation={ADD_RECIPE} variables={{ ...this.state }} update={this.updateCache}>
+			<Mutation
+				mutation={ADD_RECIPE}
+				variables={{ ...this.state }}
+				refetchQueries={() => [{ query: GET_USER_RECIPES, variables: { username } }]}
+				update={this.updateCache}
+			>
 				{(addRecipe, { data, loading, error }) => (
 					<div className="App">
 						<h2>Add recipe</h2>
