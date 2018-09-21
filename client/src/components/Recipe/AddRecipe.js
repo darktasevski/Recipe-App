@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 
 import { ADD_RECIPE, GET_ALL_RECIPES } from '../../queries/index';
+import withAuth from '../Auth/withAuth';
 
 import Error from '../Error';
 
@@ -16,7 +17,7 @@ class AddRecipe extends Component {
 	};
 
 	async componentDidMount() {
-		const username = await this.props.currentUser.username;
+		const username = await this.props.session.getCurrentUser.username;
 		this.setState({ username });
 	}
 
@@ -120,4 +121,4 @@ class AddRecipe extends Component {
 	}
 }
 
-export default withRouter(AddRecipe);
+export default withAuth(session => session && session.getCurrentUser)(withRouter(AddRecipe));
