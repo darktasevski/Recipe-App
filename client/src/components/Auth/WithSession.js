@@ -1,9 +1,9 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-import { GET_CURRENT_USER } from '../../queries/index';
+import { GET_CURRENT_USER } from '../../queries';
 
-const WithSession = Component => props => {
+const withSession = Component => props => {
 	return (
 		<Query query={GET_CURRENT_USER}>
 			{({ data, loading, refetch }) => {
@@ -15,4 +15,4 @@ const WithSession = Component => props => {
 	);
 };
 
-export default WithSession;
+export default withSession;

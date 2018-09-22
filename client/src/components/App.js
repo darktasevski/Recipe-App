@@ -15,7 +15,7 @@ const App = () => (
 					return <p>Loading...</p>;
 				}
 				if (error) {
-					return <p>{error}</p>;
+					return <p>'ERROR'</p>;
 				}
 				console.log(data);
 				return (

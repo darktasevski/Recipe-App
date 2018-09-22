@@ -44,9 +44,10 @@ exports.typeDefs = gql`
 			username: String
 		): Recipe
 		deleteUserRecipe(id: ID!): Recipe
+		likeRecipe(id: ID!, username: String!): Recipe
+		unlikeRecipe(id: ID!, username: String!): Recipe
 
 		loginUser(username: String!, password: String!): Token
-
 		registerUser(username: String!, email: String!, password: String!): Token
 	}
 `;

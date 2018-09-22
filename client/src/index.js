@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import './index.css';
 import AppRouter from './routes';
-import WithSession from './components/Auth/WithSession';
+import withSession from './components/Auth/withSession';
 import client from './apollo.config';
 import registerServiceWorker from './registerServiceWorker';
 
-const AppWithSession = WithSession(AppRouter);
+const AppWithSession = withSession(AppRouter);
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
