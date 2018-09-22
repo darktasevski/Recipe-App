@@ -16,22 +16,22 @@ const UserInfo = ({ currentUser }) => {
 			<p>Email: {currentUser.email}</p>
 			<p>Cake day: {formatDate(currentUser.joinDate)}</p>
 			<ul>
+				<h5>
+					{currentUser.username}
+					's favorite recipes:
+				</h5>
 				{currentUser.favorites.length ? (
-					<Fragment>
-						<h3>
-							{currentUser.username}
-							's favorite recipes:{' '}
-						</h3>
-						{currentUser.favorites.map(fav => (
-							<li key={fav.id}>
-								<Link to={`/recipe/${fav.id}`}>
-									<p>{fav.name}</p>
-								</Link>
-							</li>
-						))}
-					</Fragment>
+					currentUser.favorites.map(fav => (
+						<li key={fav.id}>
+							<Link to={`/recipe/${fav.id}`}>
+								<p>{fav.name}</p>
+							</Link>
+						</li>
+					))
 				) : (
-					<strong>{currentUser.username} doesn't have favorite recipes</strong>
+					<small>
+						<strong>{currentUser.username} doesn't have favorite recipes</strong>
+					</small>
 				)}
 			</ul>
 		</div>

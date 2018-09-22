@@ -46,7 +46,7 @@ class AddRecipe extends Component {
 
 	validateForm = () => {
 		// Optimistic UI optimization
-		const { name, category, description, instructions, username } = this.state;
+		const { name, category, description, instructions } = this.state;
 		return !name || !category || !description || !instructions;
 	};
 
@@ -59,7 +59,7 @@ class AddRecipe extends Component {
 	};
 
 	render() {
-		const { name, category, description, instructions } = this.state;
+		const { name, category, description, instructions, username } = this.state;
 		return (
 			<Mutation
 				mutation={ADD_RECIPE}
