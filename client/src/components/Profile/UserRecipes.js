@@ -13,7 +13,6 @@ const handleDelete = async deleteUserRecipe => {
 	const confirmDelete = window.confirm('Are you sure you want to delete this recipe?');
 	if (confirmDelete) {
 		const { data } = await deleteUserRecipe();
-		console.log(data);
 		return data;
 	}
 };

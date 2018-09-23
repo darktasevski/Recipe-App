@@ -41,7 +41,6 @@ class AddRecipe extends Component {
 		const { data } = await addRecipe();
 		this.clearState();
 		this.props.history.push('/');
-		console.log(data);
 	};
 
 	validateForm = () => {

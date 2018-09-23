@@ -38,10 +38,9 @@ class Search extends Component {
 								place="Search for Recipes"
 							/>
 							<ul>
-								{searchResults.map(recipe => {
-									console.log(recipe);
-									return <RecipeItem showLikes {...recipe} key={recipe.id} />;
-								})}
+								{searchResults.map(recipe => (
+									<RecipeItem showLikes {...recipe} key={recipe.id} />
+								))}
 							</ul>
 						</div>
 					);

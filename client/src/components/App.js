@@ -17,7 +17,6 @@ const App = () => (
 				if (error) {
 					return <p>'ERROR'</p>;
 				}
-				console.log(data);
 				return (
 					<ul>
 						{data.getAllRecipes.map(recipe => (

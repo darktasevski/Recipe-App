@@ -32,9 +32,7 @@ class Register extends Component {
 			await this.props.refetch();
 			this.clearState();
 			this.props.history.push('/auth/login');
-		} catch (err) {
-			console.log(err);
-		}
+		} catch (err) {}
 	};
 
 	validateForm = () => {

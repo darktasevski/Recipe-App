@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 const formatDate = date => {
-	console.log(date);
 	const newDate = new Date(+date).toLocaleDateString('en-US');
-
 	return `${newDate}`;
 };
 

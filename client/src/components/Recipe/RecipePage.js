@@ -15,7 +15,6 @@ const RecipePage = ({
 			{({ data, loading, error }) => {
 				if (loading) return <div>Loading...</div>;
 				if (error) return <div>{error}</div>;
-				console.log(data);
 				const { getRecipe } = data;
 				return (
 					<div className="App">

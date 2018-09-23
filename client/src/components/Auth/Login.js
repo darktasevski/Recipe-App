@@ -29,9 +29,7 @@ class Login extends Component {
 			await this.props.refetch();
 			this.clearState();
 			this.props.history.push('/');
-		} catch (err) {
-			console.log(err);
-		}
+		} catch (err) {}
 	};
 
 	validateForm = () => {
