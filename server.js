@@ -1,9 +1,12 @@
 require('dotenv').config({
 	path: 'variables.env',
 });
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
+
 // GraphQL express middleware
 const { ApolloServer } = require('apollo-server-express');
 
@@ -31,6 +34,12 @@ const server = new ApolloServer({
 	}),
 });
 
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+//   credentials: true
+// };
+app.use(cors('*'));
+
 // Set up JWT auth middleware
 app.use(async (req, res, next) => {
 	const token = req.headers['authorization'];
@@ -47,7 +56,7 @@ app.use(async (req, res, next) => {
 	return next();
 });
 
-server.applyMiddleware({ app });
+// server.applyMiddleware({ app });
 
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
@@ -61,6 +70,12 @@ mongoose
 	.then(() => console.info(`Connected to MongoDB`))
 	.catch(err => console.error(err));
 
-app.listen(PORT, () =>
-	console.info(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
-);
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+}
+
+app.listen(PORT, () => console.info(`🚀 Server ready at port ${PORT}`));
