@@ -76,7 +76,7 @@ export default new ApolloClient({
 			cache,
 		}),
 		new HttpLink({
-			uri: 'https://graphqly-recipes.herokuapp.com/',
+			uri: 'https://graphqly-recipes.herokuapp.com/graphql',
 			credentials: 'same-origin',
 		}),
 	]),
