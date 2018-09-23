@@ -1,51 +1,42 @@
 import gql from 'graphql-tag';
 
+import { recipeFragments } from './fragments';
+
 // Recipes queries
 export const GET_ALL_RECIPES = gql`
 	query {
 		getAllRecipes {
-			id
-			name
-			category
+			...CommonRecipe
 		}
 	}
+	${recipeFragments.common}
 `;
 
 export const GET_RECIPE = gql`
 	query($id: ID!) {
 		getRecipe(id: $id) {
-			name
-			category
-			description
-			instructions
-			likes
-			createdDate
-			id
-			username
+			...CompleteRecipe
 		}
 	}
+	${recipeFragments.recipe}
 `;
 
 export const SEARCH_RECIPES = gql`
 	query($searchTerm: String) {
 		searchRecipes(searchTerm: $searchTerm) {
-			id
-			name
-			likes
-			category
+			...CommonRecipe
 		}
 	}
+	${recipeFragments.common}
 `;
 
 export const GET_USER_RECIPES = gql`
 	query($username: String!) {
 		getUserRecipes(username: $username) {
-			id
-			name
-			likes
-			category
+			...CommonRecipe
 		}
 	}
+	${recipeFragments.common}
 `;
 
 // Recipes mutations
@@ -65,16 +56,10 @@ export const ADD_RECIPE = gql`
 			instructions: $instructions
 			username: $username
 		) {
-			name
-			category
-			description
-			instructions
-			likes
-			createdDate
-			id
-			username
+			...CompleteRecipe
 		}
 	}
+	${recipeFragments.recipe}
 `;
 
 export const DELETE_USER_RECIPE = gql`
