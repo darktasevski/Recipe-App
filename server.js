@@ -47,11 +47,8 @@ app.use(async (req, res, next) => {
 	if (token && token !== 'null') {
 		try {
 			const currentUser = await jwt.verify(token, process.env.JWT_SECRET);
-			console.log(currentUser);
 			req.currentUser = currentUser;
-		} catch (err) {
-			console.error(err);
-		}
+		} catch (err) {}
 	}
 	return next();
 });
