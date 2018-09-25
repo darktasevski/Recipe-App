@@ -86,7 +86,10 @@ class LikeRecipe extends Component {
 							update={this.updateLike}
 						>
 							{likeRecipe => (
-								<button onClick={() => this.onClick(likeRecipe, unlikeRecipe)}>
+								<button
+									className="like-button"
+									onClick={() => this.onClick(likeRecipe, unlikeRecipe)}
+								>
 									{this.state.liked
 										? 'Remove from favorites'
 										: 'Add to favorites'}

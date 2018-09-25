@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
+import CKEditor from 'react-ckeditor-component';
 
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../../queries/index';
 import withAuth from '../Auth/withAuth';
@@ -14,6 +15,7 @@ class AddRecipe extends Component {
 		description: '',
 		instructions: '',
 		username: '',
+		imageUrl: '',
 	};
 
 	async componentDidMount() {
@@ -28,12 +30,19 @@ class AddRecipe extends Component {
 			description: '',
 			instructions: '',
 			username: '',
+			imageUrl: '',
 		});
 
 	handleChange = e => {
 		const { name, value } = e.target;
 
 		return this.setState({ [name]: value });
+	};
+
+	handleInstChange = e => {
+		const newContent = e.editor.getData();
+
+		this.setState({ instructions: newContent });
 	};
 
 	handleSubmit = async (e, addRecipe) => {
@@ -45,8 +54,8 @@ class AddRecipe extends Component {
 
 	validateForm = () => {
 		// Optimistic UI optimization
-		const { name, category, description, instructions } = this.state;
-		return !name || !category || !description || !instructions;
+		const { name, imageUrl, category, description, instructions } = this.state;
+		return !name || !imageUrl || !category || !description || !instructions;
 	};
 
 	updateCache = (InMemoryCache, { data: { addRecipe } }) => {
@@ -58,7 +67,7 @@ class AddRecipe extends Component {
 	};
 
 	render() {
-		const { name, category, description, instructions, username } = this.state;
+		const { name, category, description, instructions, username, imageUrl } = this.state;
 		return (
 			<Mutation
 				mutation={ADD_RECIPE}
@@ -82,6 +91,13 @@ class AddRecipe extends Component {
 								onChange={this.handleChange}
 								placeholder="Recipe name"
 							/>
+							<input
+								type="text"
+								name="imageUrl"
+								value={imageUrl}
+								onChange={this.handleChange}
+								placeholder="Recipe image"
+							/>
 							<select
 								value={category}
 								name="category"
@@ -101,13 +117,11 @@ class AddRecipe extends Component {
 								onChange={this.handleChange}
 								placeholder="Recipe description "
 							/>
-							<textarea
+							<label htmlFor="instructions">Recipe instructions</label>
+							<CKEditor
 								name="instructions"
-								id="instructions"
-								rows="5"
-								value={instructions}
-								onChange={this.handleChange}
-								placeholder="Recipe instructions"
+								content={instructions}
+								events={{ change: this.handleInstChange }}
 							/>
 							<button
 								disabled={loading || this.validateForm()}

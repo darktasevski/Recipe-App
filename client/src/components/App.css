@@ -1,7 +1,6 @@
 .App {
 	text-align: center;
 	margin-top: 1em;
-	height: 100%;
 }
 
 nav {
@@ -44,7 +43,6 @@ nav a:link {
 
 .active {
 	font-weight: bold;
-	color: hsl(55, 90%, 30%);
 }
 
 .form {
@@ -57,10 +55,6 @@ nav a:link {
 .delete-button {
 	color: red;
 	cursor: pointer;
-}
-
-.button-primary:disabled {
-	background: #50c9c3;
 }
 
 /* App */
@@ -200,7 +194,7 @@ nav a:link {
 
 .recipe-header {
 	overflow: hidden;
-	background-image: url(https://bit.ly/2JqRbuI);
+	background-image: url('../assets/just-waves.png');
 }
 
 .recipe-header > p {
@@ -240,9 +234,7 @@ nav a:link {
 }
 
 .like-button {
-	position: fixed;
-	right: 1em;
-	bottom: 1em;
+	margin-top: 2rem;
 	font-size: 2rem;
 	background-color: #f15f79;
 	color: white !important;

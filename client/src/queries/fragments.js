@@ -4,6 +4,7 @@ export const recipeFragments = {
 	recipe: gql`
 		fragment CompleteRecipe on Recipe {
 			name
+			imageUrl
 			category
 			description
 			instructions
@@ -17,6 +18,7 @@ export const recipeFragments = {
 		fragment CommonRecipe on Recipe {
 			id
 			name
+			imageUrl
 			likes
 			category
 		}

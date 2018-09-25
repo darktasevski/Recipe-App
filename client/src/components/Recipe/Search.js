@@ -22,6 +22,7 @@ class Search extends Component {
 						<div className="App">
 							<input
 								type="search"
+								className="search"
 								onChange={async e => {
 									e.persist();
 
@@ -37,7 +38,7 @@ class Search extends Component {
 								name="search"
 								place="Search for Recipes"
 							/>
-							<ul>
+							<ul className="cards">
 								{searchResults.map(recipe => (
 									<RecipeItem showLikes {...recipe} key={recipe.id} />
 								))}

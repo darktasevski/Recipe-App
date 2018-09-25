@@ -10,6 +10,7 @@ const RecipeSchema = new mongoose.Schema({
 	category: { ...commonConfig },
 	description: { ...commonConfig },
 	instructions: { ...commonConfig },
+	imageUrl: { ...commonConfig },
 	createdDate: {
 		type: Date,
 		default: Date.now,

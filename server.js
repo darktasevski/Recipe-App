@@ -53,7 +53,7 @@ app.use(async (req, res, next) => {
 	return next();
 });
 
-// server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);

@@ -44,6 +44,7 @@ export const GET_USER_RECIPES = gql`
 export const ADD_RECIPE = gql`
 	mutation(
 		$name: String!
+		$imageUrl: String!
 		$description: String!
 		$category: String!
 		$instructions: String!
@@ -51,6 +52,7 @@ export const ADD_RECIPE = gql`
 	) {
 		addRecipe(
 			name: $name
+			imageUrl: $imageUrl
 			description: $description
 			category: $category
 			instructions: $instructions
