@@ -55,9 +55,9 @@ export default new ApolloClient({
 			if (networkError) {
 				console.error(`[Network error]: ${networkError}`);
 				// Logout user?
-				// if ((networkError.statusCode = 401)) {
-				// 	localStorage.removeItem('token');
-				// }
+				if ((networkError.statusCode = 401)) {
+					localStorage.removeItem('token');
+				}
 			}
 		}),
 		requestLink,
@@ -76,6 +76,7 @@ export default new ApolloClient({
 			cache,
 		}),
 		new HttpLink({
+			// change this to uri: 'http://localhost:5050/graphql' for local development
 			uri: 'https://graphqly-recipes.herokuapp.com/graphql',
 			credentials: 'same-origin',
 		}),
