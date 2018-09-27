@@ -35,6 +35,7 @@ For running in local you need to change endpoint for GraphQL server in client/sr
 -   [React](reactjs.org) - The web view framework
 -   [React Router](https://github.com/ReactTraining/react-router) - Declarative routing for React
 -   [GraphQl](https://graphql.org/) - A query language for your API
+-   [Apollo GraphQL](https://www.apollographql.com/) - Universal GraphQL API 
 -   [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling
 
 -   Client bootstraped with [create-react-app](https://github.com/facebook/create-react-app).
